@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Rede Social</title>
+    <style>
+        /* Reset básico e configurações de fonte */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #d8d8e6, #e1e2e6); /* Gradiente sutil de fundo */
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(45deg, #101a9b, #7c0ab1); /* Gradiente vibrante do Instagram */
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        nav {
+            background: #ffffff;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            border-bottom: 2px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            color: #7c0ab1; /* Cor de destaque do Instagram */
+            transform: scale(1.1);
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+
+        section:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: #7c0ab1; /* Cor de destaque do Instagram */
+            margin-top: 0;
+            font-size: 2rem;
+        }
+
+        textarea, input[type="text"], input[type="email"] {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+
+        input.error, textarea.error {
+            border: 1px solid #e74c3c; /* Vermelho para indicar erro */
+            background-color: #fdd;
+        }
+
+        button {
+            background: linear-gradient(45deg, #201492, #7c0ab1); /* Gradiente do Instagram */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #7c0ab1, #201492);
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #ffffff;
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            border-top: 2px solid #ddd;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .contact-form, .about, .biography {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Adiciona estilo para animação de fade-in */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Minha Rede Social</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#contato">Contato</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#biografia">Biografia</a>
+        </nav>
+    </header>
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="welcome fade-in">
+            <h2>Bem-vindo ao nosso site!</h2>
+            <p>Conecte-se, compartilhe e descubra novas histórias.</p>
+        </section>
+
+        <!-- Contato Section -->
+        <section id="contato" class="contact-form fade-in">
+            <h2>Contato</h2>
+            <form>
+                <input type="text" placeholder="Nome" required>
+                <input type="email" placeholder="E-mail" required>
+                <textarea placeholder="Sua mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <!-- Sobre Section -->
+        <section id="sobre" class="about fade-in">
+            <h2>Sobre Nós</h2>
+            <p>Saiba mais sobre nossa missão e equipe.</p>
+        </section>
+
+        <!-- Biografia Section -->
+        <section id="biografia" class="biography fade-in">
+            <h2>Biografia</h2>
+            <p>Explore as biografias dos nossos membros e descubra histórias inspiradoras.</p>
+        </section>
+    </main>
+    <footer>
+        &copy; 2024 Minha Rede Social
+    </footer>
+    <script>
+        // Função para validar e enviar formulários
+        function validateForm(form) {
+            let valid = true;
+            form.querySelectorAll('input[required], textarea[required]').forEach(input => {
+                if (!input.value.trim()) {
+                    valid = false;
+                    input.classList.add('error');
+                } else {
+                    input.classList.remove('error');
+                }
+            });
+            return valid;
+        }
+
+        // Adiciona um ouvinte de evento a todos os formulários
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                if (validateForm(form)) {
+                    // Se o formulário for válido, mostra uma mensagem de confirmação
+                    alert('Formulário enviado com sucesso!');
+                    form.reset(); // Limpa os campos do formulário
+                } else {
+                    // Se o formulário não for válido, mostra uma mensagem de erro
+                    alert('Por favor, preencha todos os campos obrigatórios.');
+                }
+            });
+        });
+
+        // Adiciona animações e efeitos de rolagem
+        document.addEventListener('scroll', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.9) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        // Adiciona um efeito de clique para os links de navegação
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Impede o comportamento padrão
+                document.querySelector(link.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
